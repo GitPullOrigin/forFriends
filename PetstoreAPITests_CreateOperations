@@ -1,0 +1,52 @@
+{
+  "Petstore API Tests": {
+    "Create Pet Tests": [
+      {
+        "test_name": "Create a new pet - Positive",
+        "request": {
+          "method": "POST",
+          "url": "https://petstore.swagger.io/v2/pet",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "id": 1234,
+            "name": "Test Pet",
+            "status": "available"
+          }
+        },
+        "expected_response": {
+          "status_code": 200,
+          "body": {
+            "id": 1234,
+            "name": "Test Pet",
+            "status": "available"
+          }
+        }
+      },
+      {
+        "test_name": "Create a new pet - Negative (Duplicate ID)",
+        "request": {
+          "method": "POST",
+          "url": "https://petstore.swagger.io/v2/pet",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "id": 1234,
+            "name": "Duplicate Pet",
+            "status": "available"
+          }
+        },
+        "expected_response": {
+          "status_code": 400,
+          "body": {
+            "code": 400,
+            "type": "unknown",
+            "message": "Pet already exists"
+          }
+        }
+      }
+    ]
+  }
+}
